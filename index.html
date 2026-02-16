@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Guess the Number</title>
+</head>
+<body>
+    <h1>Guess the Number!</h1>
+    <p>Check your browser prompts to play!</p>
+
+    <script>
+        let highScore = 1000000;
+        let running = true;
+
+        while (running) {
+            let attempts = 0;
+            let number = Math.floor(Math.random() * 30) + 1;
+            let guessing = true;
+
+            while (guessing) {
+                let userInput = prompt("Guess a whole number between 1 and 30:");
+                
+                if (userInput === null) {
+                    running = false;
+                    break;
+                }
+
+                let guess = parseInt(userInput);
+                attempts++;
+
+                if (guess === number) {
+                    let message = "You guessed the number!\n";
+                    message += (attempts === 1) ? "It took you 1 try!" : `It took you ${attempts} tries.`;
+                    
+                    message += `
+                    \nScoring Chart:
+                    1 guess: Artificially intelligent
+                    2-5 guesses: Amazing
+                    6-10 guesses: Great
+                    11-15 guesses: Okay
+                    16-23 guesses: Bad
+                    24+ guesses: Awful`;
+
+                    if (attempts < highScore) {
+                        highScore = attempts;
+                    }
+
+                    message += `\n\nYour high score is: ${highScore}`;
+                    alert(message);
+
+                    let replay = prompt("Would you like to play again? Type 'yes' or 'no':").toLowerCase();
+                    if (replay === "yes") {
+                        guessing = false;
+                    } else {
+                        alert("Exiting...");
+                        running = false;
+                        guessing = false;
+                    }
+                } else if (guess > number) {
+                    alert(`The number is less than ${guess}`);
+                } else if (guess < number) {
+                    alert(`The number is greater than ${guess}`);
+                }
+            }
+        }
+    </script>
+</body>
+</html>
