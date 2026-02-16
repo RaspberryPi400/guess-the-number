@@ -16,7 +16,7 @@ while running:
             attemps = attemps + 1
             print("You guessed the number!")
             if attemps > 1:
-                print(f"It took you ", attemps, " trys.")
+                print(f"It took you ", attemps, " tries.")
             elif attemps == 1:
                 print("It took you 1 try!")
             print("""
